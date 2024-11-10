@@ -1,5 +1,9 @@
-export default function Home() {
-  console.log(process.env.API_KEY);
+import Signin from "@/pages/Signin";
 
-  return <main></main>;
+export default function Home() {
+  return (
+    <main>
+      <Signin />
+    </main>
+  );
 }

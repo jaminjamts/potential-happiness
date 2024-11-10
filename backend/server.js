@@ -18,9 +18,14 @@ server.get("/", (_, res) => {
 server.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
   try {
+    const existEmail = await sql`SELECT * FROM users WHERE email=${email}`;
+    if (existEmail.length > 0) {
+      return res
+        .status(400)
+        .json({ success: false, message: "burtgeltei email baina" });
+    }
     const response = await sql`INSERT INTO users(name, email,password) 
       VALUES(${name}, ${email}, ${password});`;
-    console.log(response);
     res.status(201).json({ success: true });
   } catch (error) {
     throw new error();
