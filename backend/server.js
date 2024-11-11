@@ -34,8 +34,8 @@ server.post("/signup", async (req, res) => {
 
 server.post("/signin", async (req, res) => {
   try {
-    const { name, password } = req.body;
-    const user = await sql`SELECT * FROM users WHERE name = ${name}`;
+    const { email, password } = req.body;
+    const user = await sql`SELECT * FROM users WHERE email = ${email}`;
     if (user.length === 0) {
       return res
         .status(200)
